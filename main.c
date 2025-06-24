@@ -5,50 +5,52 @@
 
 int main()
 {
-	FileHandler fh = {0};
-	char filename[256];
+	FileData fd = {0};
 	int choice;
 
 	while (1)
 	{
-		print_filename(&fh);
+		print_filename(&fd);
 
 		print_main_menu();
 		choice = get_user_choice();
 
 		switch (choice)
 		{
-		// Выход
-		case 0: // Выйти из программы
-			close_file(&fh);
-			return 0;
+
 		// Управление файлом
 		case 1: // Создать
-			create_file(&fh);
+			create_fd(&fd);
 			break;
 		case 2: // Открыть (для чтения и записи)
-			open_file(&fh, "r+");
+			open_fd(&fd);
 			break;
 		case 3: // Закрыть
-			close_file(&fh);
+			close_fd(&fd);
 			break;
 		case 4: // Очистить
-			clear_file(&fh);
+			clear_fd(&fd);
 			break;
 		case 5: // Удалить
-			close_file(&fh);
-			delete_file(fh.filename);
+			delete_fd(&fd);
 			break;
+
 		// Редактирование
 		case 6: // Заполнить автоматически
 			break;
 		case 7: // Отсортировать
 			break;
+
 		// Поиск
 		case 8: // Линейный
 			break;
 		case 9: // Бинарный
 			break;
+
+		// Выход
+		case 0: // Выйти из программы
+			close_fd(&fd);
+			return 0;
 		default:
 			printf("Неверный пункт!\n");
 		}

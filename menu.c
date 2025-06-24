@@ -4,9 +4,7 @@
 
 void print_main_menu(void)
 {
-  printf("Выход\n");
-  printf("0. Выйти из программы\n");
-  printf("Управление файлом\n");
+  printf("\nУправление файлом\n");
   printf("1. Создать\n");
   printf("2. Открыть (для чтения и записи)\n");
   printf("3. Закрыть\n");
@@ -18,6 +16,8 @@ void print_main_menu(void)
   printf("Поиск\n");
   printf("8. Линейный\n");
   printf("9. Бинарный\n");
+  printf("Выход\n");
+  printf("0. Выйти из программы\n");
   printf("Выберите пункт: ");
 }
 

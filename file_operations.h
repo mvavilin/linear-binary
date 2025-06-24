@@ -5,18 +5,18 @@
 
 typedef struct
 {
-  FILE *file_ptr;
-  char filename[256];
-  bool is_open;
-} FileHandler;
+	FILE *file_ptr;
+	char filename[256];
+} FileData;
 
-void print_filename(FileHandler *fh);
-void input_filename(char *filename, size_t max_length);
+void clear_input_buffer();
+bool print_filename(FileData *fd);
+bool input_filename(FileData *fd);
 
-bool create_file(FileHandler *fh);
-bool open_file(FileHandler *fh, const char *mode);
-bool delete_file(const char *filename);
-bool clear_file(FileHandler *fh);
-void close_file(FileHandler *fh);
+bool create_fd(FileData *fd);
+bool open_fd(FileData *fd);
+bool close_fd(FileData *fd);
+bool delete_fd(FileData *fd);
+bool clear_fd(FileData *fd);
 
 #endif
