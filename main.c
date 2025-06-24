@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "file_operations.h"
 #include "binary_search.h"
+#include "edit.h" 
 
 int main()
 {
@@ -38,6 +39,7 @@ int main()
 
 		// Редактирование
 		case 6: // Заполнить автоматически
+			fill_with_random_number(&fd);
 			break;
 		case 7: // Отсортировать
 			break;
