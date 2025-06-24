@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "file_operations.h"
 #include "binary_search.h"
+#include "linear_search.h"
 #include "edit.h" 
 
 int main()
@@ -47,6 +48,17 @@ int main()
 
 		// Поиск
 		case 8: // Линейный
+			if (fd.file_ptr) {
+				int value;
+				printf("Введите значение для поиска: ");
+				if (scanf("%d", &value) == 1) {
+					linear_search_fd(&fd, value);
+				} else {
+					printf("Ошибка ввода!\n");
+				}
+			} else {
+				printf("Сначала откройте файл!\n");
+			}
 			break;
 		case 9: // Бинарный
 			if (fd.file_ptr)

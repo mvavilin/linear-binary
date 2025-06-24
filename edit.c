@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "file_operations.h"
 #include "binary_search.h"
+#include "edit.h"
 
 void fill_with_random_number(FileData *fd) {
     if (fd == NULL || fd->file_ptr == NULL) {
