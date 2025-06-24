@@ -42,6 +42,7 @@ int main()
 			fill_with_random_number(&fd);
 			break;
 		case 7: // Отсортировать
+			bubble_sort(&fd);
 			break;
 
 		// Поиск

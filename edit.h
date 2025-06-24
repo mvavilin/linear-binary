@@ -4,5 +4,6 @@
 #include "file_operations.h"
 
 void fill_with_random_number(FileData *fd);
+void bubble_sort(FileData *fd);
 
 #endif
