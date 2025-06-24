@@ -2,6 +2,7 @@
 #include <string.h>
 #include "menu.h"
 #include "file_operations.h"
+#include "binary_search.h"
 
 int main()
 {
@@ -45,6 +46,24 @@ int main()
 		case 8: // Линейный
 			break;
 		case 9: // Бинарный
+			if (fd.file_ptr)
+			{
+				printf("Введите значение для поиска: ");
+				int value;
+				if (scanf("%d", &value) == 1)
+				{
+					binary_search_fd(&fd, value);
+				}
+				else
+				{
+					printf("Ошибка: введите корректное число.\n");
+					clear_input_buffer();
+				}
+			}
+			else
+			{
+				printf("Ошибка: файл не открыт.\n");
+			}
 			break;
 
 		// Выход

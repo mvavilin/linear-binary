@@ -92,11 +92,14 @@ bool open_fd(FileData *fd)
 
 bool close_fd(FileData *fd)
 {
-	fclose(fd->file_ptr);
-	fd->file_ptr = NULL;
-	printf("Файл '%s' закрыт.\n", fd->filename);
-	fd->filename[0] = '\0';
-	return true;
+	if (fd->file_ptr)
+	{
+		fclose(fd->file_ptr);
+		fd->file_ptr = NULL;
+		printf("Файл '%s' закрыт.\n", fd->filename);
+		fd->filename[0] = '\0';
+		return true;
+	}
 }
 
 bool delete_fd(FileData *fd)
@@ -123,7 +126,7 @@ bool delete_fd(FileData *fd)
 		return false;
 	}
 
-	printf("Файл '%s' удалён.\n", fd->filename);
+	printf("Файл '%s' удален.\n", fd->filename);
 	fd->filename[0] = '\0';
 	return true;
 }
