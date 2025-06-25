@@ -1,0 +1,64 @@
+# Файлы сборки и исполняемые файлы
+*.exe
+*.out
+*.app
+*.o
+*.a
+*.so
+*.dll
+*.lib
+*.dylib
+
+# Папки сборки
+build/
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+.vs/
+.vscode/
+
+# Кэш и временные файлы
+*.cache
+*.tmp
+*.swp
+*~
+*.bak
+
+# Логи и отчеты
+*.log
+*.tlog
+*.ilk
+*.pdb
+*.idb
+*.ipch
+*.suo
+*.user
+*.sdf
+
+# Файлы проектов (Visual Studio, CMake и др.)
+*.sln
+*.vcxproj*
+*.vcproj*
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Файлы редактора (VS Code)
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Дополнительно для C++ (шаблоны, зависимости и пр.)
+*.depend
+*.layout
