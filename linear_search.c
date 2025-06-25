@@ -30,7 +30,7 @@ static SearchResult linear_search_analyze(const int *array, int count, int value
 static void print_search_stats(const SearchStats *stats) {
     printf("\nСтатистика поиска:\n");
     printf("--------------------------------\n");
-    printf("Общее время выполнения: %.10f мс\n", stats->time_ms);
+    printf("Общее время выполнения: %.6f мс\n", stats->time_ms);
     printf("Всего итераций (сравнений): %d\n", stats->iterations);
     printf("--------------------------------\n");
 }

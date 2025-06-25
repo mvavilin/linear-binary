@@ -112,7 +112,7 @@ void print_search_stats(double time_ms, int iterations_start, int iterations_end
 {
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
-	printf("Общее время выполнения: %.10f мс\n", time_ms);
+	printf("Общее время выполнения: %.6f мс\n", time_ms);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
 	printf("Всего итераций: %d\n", iterations_start + iterations_end);
