@@ -112,7 +112,7 @@ void print_search_stats(double time_ms, int iterations_start, int iterations_end
 {
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
-	printf("Общее время выполнения: %.3f мс\n", time_ms);
+	printf("Общее время выполнения: %.10f мс\n", time_ms);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
 	printf("Всего итераций: %d\n", iterations_start + iterations_end);
@@ -144,10 +144,7 @@ bool binary_search_fd(FileData *fd, int value)
 		return false;
 	}
 
-	// clock_t start_time = clock();
-	LARGE_INTEGER freq, start, end;
-	QueryPerformanceFrequency(&freq);
-	QueryPerformanceCounter(&start);
+
 	rewind(fd->file_ptr);
 
 	int *numbers = NULL; // Массив чисел из файла
@@ -171,6 +168,11 @@ bool binary_search_fd(FileData *fd, int value)
 		free(numbers);
 		return false;
 	}
+
+	// clock_t start_time = clock();
+	LARGE_INTEGER freq, start, end;
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&start);
 
 	int iterations_from_start = 0;
 	int iterations_from_end = 0;

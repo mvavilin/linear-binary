@@ -146,6 +146,13 @@ bool clear_fd(FileData *fd)
 		return false;
 	}
 
+	fd->file_ptr = freopen(fd->filename, "r+", fd->file_ptr);
+	if (fd->file_ptr == NULL)
+	{
+		printf("Ошибка: не удалось очистить файл '%s'.\n", fd->filename);
+		return false;
+	}
+
 	printf("Файл '%s' очищен.\n", fd->filename);
 	return true;
 }

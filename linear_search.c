@@ -8,9 +8,13 @@
 
 static SearchResult linear_search_analyze(const int *array, int count, int value) {
     SearchResult result = {0};
+    result.first_pos = -1;  
+    result.last_pos = -1;
+    result.iterations = 0;  
     result.iterations = count; 
     
     for (int i = 0; i < count; i++) {
+        result.iterations++;
         if (array[i] == value) {
             result.occurrences++;
             if (result.first_pos == -1) {
@@ -26,7 +30,7 @@ static SearchResult linear_search_analyze(const int *array, int count, int value
 static void print_search_stats(const SearchStats *stats) {
     printf("\nСтатистика поиска:\n");
     printf("--------------------------------\n");
-    printf("Общее время выполнения: %.3f мс\n", stats->time_ms);
+    printf("Общее время выполнения: %.10f мс\n", stats->time_ms);
     printf("Всего итераций (сравнений): %d\n", stats->iterations);
     printf("--------------------------------\n");
 }
@@ -49,10 +53,6 @@ bool linear_search_fd(FileData *fd, int value) {
         printf("Ошибка: файл не открыт.\n");
         return false;
     }
-
-    LARGE_INTEGER freq, start, end;
-    QueryPerformanceFrequency(&freq);
-    QueryPerformanceCounter(&start);
     
     rewind(fd->file_ptr);
     int *numbers = NULL;
@@ -67,6 +67,10 @@ bool linear_search_fd(FileData *fd, int value) {
         free(numbers);
         return false;
     }
+
+    LARGE_INTEGER freq, start, end;
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&start);
 
     SearchResult result = linear_search_analyze(numbers, count, value);
 
