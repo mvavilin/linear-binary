@@ -6,6 +6,28 @@
 #include "file_operations.h"
 #include "binary_search.h"
 
+void binary_search(FileData *fd)
+{
+	if (fd->file_ptr)
+	{
+		printf("Введите значение для поиска: ");
+		int value;
+		if (scanf("%d", &value) == 1)
+		{
+			binary_search_fd(fd, value);
+		}
+		else
+		{
+			printf("Ошибка: введите корректное число.\n");
+			clear_input_buffer();
+		}
+	}
+	else
+	{
+		printf("Ошибка: файл не открыт.\n");
+	}
+}
+
 int find_first_occurrence(const int *array, int count, int value, int *iterations)
 {
 	int left = 0;
@@ -143,7 +165,6 @@ bool binary_search_fd(FileData *fd, int value)
 		printf("Ошибка: файл не открыт.\n");
 		return false;
 	}
-
 
 	rewind(fd->file_ptr);
 
