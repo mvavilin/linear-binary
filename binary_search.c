@@ -12,7 +12,7 @@ void binary_search(FileData *fd)
 	{
 		printf("Введите значение для поиска: ");
 		int value;
-		if (scanf("%d", &value) == 1 && value >= 0)
+		if (scanf("%d", &value) == 1)
 		{
 			binary_search_fd(fd, value);
 		}
