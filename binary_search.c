@@ -33,7 +33,6 @@ int find_first_occurrence(const int *array, int count, int value, int *iteration
 	int left = 0;
 	int right = count - 1;
 	int result = -1;
-	*iterations = 0;
 
 	while (left <= right)
 	{
@@ -62,7 +61,6 @@ int find_last_occurrence(const int *array, int count, int value, int *iterations
 	int left = 0;
 	int right = count - 1;
 	int result = -1;
-	*iterations = 0;
 
 	while (left <= right)
 	{
