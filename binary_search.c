@@ -12,13 +12,13 @@ void binary_search(FileData *fd)
 	{
 		printf("Введите значение для поиска: ");
 		int value;
-		if (scanf("%d", &value) == 1)
+		if (scanf("%d", &value) == 1 && value >= 0)
 		{
 			binary_search_fd(fd, value);
 		}
 		else
 		{
-			printf("Ошибка: введите корректное число.\n");
+			printf("Ошибка: введите положительное число.\n");
 			clear_input_buffer();
 		}
 	}
