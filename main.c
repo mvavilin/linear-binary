@@ -42,7 +42,7 @@ int main()
 		case 6: // Заполнить автоматически
 			fill_with_random_number(&fd);
 			break;
-		case 7: // Отсортировать
+		case 7: // Отсортировать (по возрастанию)
 			bubble_sort(&fd);
 			break;
 

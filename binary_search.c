@@ -28,6 +28,28 @@ void binary_search(FileData *fd)
 	}
 }
 
+int find_occurrence(const int *array, int count, int value, int *iterations)
+{
+	int left = 0;
+	int right = count - 1;
+
+	while (left <= right)
+	{
+		(*iterations)++;
+		int mid = left + (right - left) / 2;
+
+		if (array[mid] == value)
+			return mid;
+
+		if (array[mid] < value)
+			left = mid + 1;
+		else
+			right = mid - 1;
+	}
+
+	return -1;
+}
+
 int find_first_occurrence(const int *array, int count, int value, int *iterations)
 {
 	int left = 0;
@@ -128,24 +150,26 @@ bool is_sorted(const int *numbers, int count)
 	return true;
 }
 
-void print_search_stats(double time_ms, int iterations_start, int iterations_end)
+void print_search_stats(double time_ms, int iterations_occurrence, int iterations_start, int iterations_end)
 {
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
-	printf("Общее время выполнения: %.6f мс\n", time_ms);
+	printf("Время выполнения: %.6f мс\n", time_ms);
+	printf("Итераций поиска вхождения: %d\n", iterations_occurrence);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
-	printf("Всего итераций: %d\n", iterations_start + iterations_end);
+	printf("Всего итераций: %d\n", iterations_occurrence + iterations_start + iterations_end);
 	printf("--------------------------------\n");
 }
 
-void print_search_results(int value, int first_occurrence, int last_occurrence)
+void print_search_results(int value, int occurrence, int first_occurrence, int last_occurrence)
 {
 	printf("\nРезультаты поиска:\n");
 	printf("--------------------------------\n");
-	if (first_occurrence != -1)
+	if (occurrence != -1)
 	{
 		printf("Значение %d найдено %d раз(а)\n", value, last_occurrence - first_occurrence + 1);
+		printf("Найденное вхождение: позиция %d\n", occurrence + 1);
 		printf("Первое вхождение: позиция %d\n", first_occurrence + 1);
 		printf("Последнее вхождение: позиция %d\n", last_occurrence + 1);
 	}
@@ -193,9 +217,11 @@ bool binary_search_fd(FileData *fd, int value)
 	QueryPerformanceFrequency(&freq);
 	QueryPerformanceCounter(&start);
 
+	int iterations_from_occurrence = 0;
 	int iterations_from_start = 0;
 	int iterations_from_end = 0;
 
+	int occurrence = find_occurrence(numbers, count, value, &iterations_from_occurrence);
 	int first_occurrence = find_first_occurrence(numbers, count, value, &iterations_from_start);
 	int last_occurrence = find_last_occurrence(numbers, count, value, &iterations_from_end);
 	// clock_t end_time = clock();
@@ -205,8 +231,8 @@ bool binary_search_fd(FileData *fd, int value)
 	double time_s = (double)(end.QuadPart - start.QuadPart) * 1000.0 / freq.QuadPart;
 
 	// print_search_stats(time_spent, iterations_from_start, iterations_from_end);
-	print_search_stats(time_s, iterations_from_start, iterations_from_end);
-	print_search_results(value, first_occurrence, last_occurrence);
+	print_search_stats(time_s, iterations_from_occurrence, iterations_from_start, iterations_from_end);
+	print_search_results(value, occurrence, first_occurrence, last_occurrence);
 
 	free(numbers);
 	return first_occurrence != -1;
