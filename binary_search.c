@@ -150,15 +150,18 @@ bool is_sorted(const int *numbers, int count)
 	return true;
 }
 
-void print_search_stats(double time_ms, int iterations_occurrence, int iterations_start, int iterations_end)
+void print_search_stats(double time_ms_occurrence, double time_s_start, double time_s_end, int iterations_occurrence, int iterations_start, int iterations_end)
 {
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
-	printf("Время выполнения: %.6f мс\n", time_ms);
 	printf("Итераций поиска вхождения: %d\n", iterations_occurrence);
+	printf("Время выполнения: %.9f с или %.6f мс\n", time_ms_occurrence, time_ms_occurrence * 1000.0);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
+	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_start, time_s_start * 1000.0);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
+	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_end, time_s_start * 1000.0);
 	printf("Всего итераций: %d\n", iterations_occurrence + iterations_start + iterations_end);
+	printf("Общее время выполнения: %.9f с или %.6f мс\n", time_ms_occurrence + time_s_start + time_s_end, (time_ms_occurrence + time_s_start + time_s_end) * 1000.0);
 	printf("--------------------------------\n");
 }
 
@@ -213,25 +216,34 @@ bool binary_search_fd(FileData *fd, int value)
 	}
 
 	// clock_t start_time = clock();
-	LARGE_INTEGER freq, start, end;
-	QueryPerformanceFrequency(&freq);
-	QueryPerformanceCounter(&start);
 
 	int iterations_from_occurrence = 0;
 	int iterations_from_start = 0;
 	int iterations_from_end = 0;
 
+	LARGE_INTEGER freq, start, end;
+
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&start);
 	int occurrence = find_occurrence(numbers, count, value, &iterations_from_occurrence);
+	QueryPerformanceCounter(&end);
+	double time_s_occurrence = (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
+
+	QueryPerformanceCounter(&start);
 	int first_occurrence = find_first_occurrence(numbers, count, value, &iterations_from_start);
+	QueryPerformanceCounter(&end);
+	double time_s_first_occurrence = (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
+
+	QueryPerformanceCounter(&start);
 	int last_occurrence = find_last_occurrence(numbers, count, value, &iterations_from_end);
+	QueryPerformanceCounter(&end);
+	double time_s_last_occurrence = (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
+
 	// clock_t end_time = clock();
 	// double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC * 1000;
 
-	QueryPerformanceCounter(&end);
-	double time_s = (double)(end.QuadPart - start.QuadPart) * 1000.0 / freq.QuadPart;
-
 	// print_search_stats(time_spent, iterations_from_start, iterations_from_end);
-	print_search_stats(time_s, iterations_from_occurrence, iterations_from_start, iterations_from_end);
+	print_search_stats(time_s_occurrence, time_s_first_occurrence, time_s_last_occurrence, iterations_from_occurrence, iterations_from_start, iterations_from_end);
 	print_search_results(value, occurrence, first_occurrence, last_occurrence);
 
 	free(numbers);
