@@ -26,13 +26,13 @@ void linear_search(FileData *fd)
     }
 }
 
-static SearchResult linear_search_analyze(const int *array, int count, int value)
+SearchResult linear_search_analyze(const int *array, int count, int value)
 {
     SearchResult result = {0};
     result.first_pos = -1;
     result.last_pos = -1;
     result.iterations = 0;
-    result.iterations = count;
+    result.iterations = 0;
 
     for (int i = 0; i < count; i++)
     {
@@ -51,7 +51,7 @@ static SearchResult linear_search_analyze(const int *array, int count, int value
     return result;
 }
 
-static void print_search_stats(const SearchStats *stats)
+void print_search_stats(const SearchStats *stats)
 {
     printf("\nСтатистика поиска:\n");
     printf("--------------------------------\n");
@@ -60,7 +60,7 @@ static void print_search_stats(const SearchStats *stats)
     printf("--------------------------------\n");
 }
 
-static void print_search_results(int value, const SearchResult *result)
+void print_search_results(int value, const SearchResult *result)
 {
     printf("\nРезультаты поиска:\n");
     printf("--------------------------------\n");
