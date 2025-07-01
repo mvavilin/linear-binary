@@ -150,22 +150,22 @@ bool is_sorted(const int *numbers, int count)
 	return true;
 }
 
-void print_search_stats(double time_ms_occurrence, double time_s_start, double time_s_end, int iterations_occurrence, int iterations_start, int iterations_end)
+static void print_search_stats(double time_ms_occurrence, double time_s_start, double time_s_end, int iterations_occurrence, int iterations_start, int iterations_end)
 {
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
 	printf("Итераций поиска вхождения: %d\n", iterations_occurrence);
-	printf("Время выполнения: %.9f с или %.6f мс\n", time_ms_occurrence, time_ms_occurrence * 1000.0);
+	printf("Время выполнения: %.6f мс\n", time_ms_occurrence, time_ms_occurrence * 1000.0);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
-	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_start, time_s_start * 1000.0);
+	printf("Время выполнения: %.6f мс\n", time_s_start, time_s_start * 1000.0);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
-	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_end, time_s_start * 1000.0);
+	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_end, time_s_end * 1000.0);
 	printf("Всего итераций: %d\n", iterations_occurrence + iterations_start + iterations_end);
 	printf("Общее время выполнения: %.9f с или %.6f мс\n", time_ms_occurrence + time_s_start + time_s_end, (time_ms_occurrence + time_s_start + time_s_end) * 1000.0);
 	printf("--------------------------------\n");
 }
 
-void print_search_results(int value, int occurrence, int first_occurrence, int last_occurrence)
+static void print_search_results(int value, int occurrence, int first_occurrence, int last_occurrence)
 {
 	printf("\nРезультаты поиска:\n");
 	printf("--------------------------------\n");
