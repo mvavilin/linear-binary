@@ -155,13 +155,13 @@ static void print_search_stats(double time_ms_occurrence, double time_s_start, d
 	printf("\nСтатистика поиска:\n");
 	printf("--------------------------------\n");
 	printf("Итераций поиска вхождения: %d\n", iterations_occurrence);
-	printf("Время выполнения: %.6f мс\n", time_ms_occurrence, time_ms_occurrence * 1000.0);
+	printf("Время выполнения: %.6f мс\n", time_ms_occurrence * 1000.0);
 	printf("Итераций поиска первого вхождения: %d\n", iterations_start);
-	printf("Время выполнения: %.6f мс\n", time_s_start, time_s_start * 1000.0);
+	printf("Время выполнения: %.6f мс\n", time_s_start * 1000.0);
 	printf("Итераций поиска последнего вхождения: %d\n", iterations_end);
-	printf("Время выполнения: %.9f с или %.6f мс\n", time_s_end, time_s_end * 1000.0);
+	printf("Время выполнения: %.6f мс\n", time_s_end * 1000.0);
 	printf("Всего итераций: %d\n", iterations_occurrence + iterations_start + iterations_end);
-	printf("Общее время выполнения: %.9f с или %.6f мс\n", time_ms_occurrence + time_s_start + time_s_end, (time_ms_occurrence + time_s_start + time_s_end) * 1000.0);
+	printf("Общее время выполнения: %.6f мс\n", (time_ms_occurrence + time_s_start + time_s_end) * 1000.0);
 	printf("--------------------------------\n");
 }
 
