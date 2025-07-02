@@ -3,18 +3,22 @@
 
 #include "file_operations.h"
 
-typedef struct {
+typedef struct
+{
     int occurrences;
     int first_pos;
     int last_pos;
     int iterations;
 } SearchResult;
 
-typedef struct {
+typedef struct
+{
     double time_ms;
     int iterations;
+    int count;
 } SearchStats;
 
-bool linear_search_fd(FileData *fd, int value);
+void linear_search(FileData *fd);
+bool linear_search_fd(FileData *fd, int value, bool search_all);
 
 #endif

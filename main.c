@@ -4,7 +4,7 @@
 #include "file_operations.h"
 #include "binary_search.h"
 #include "linear_search.h"
-#include "edit.h" 
+#include "edit.h"
 
 int main()
 {
@@ -42,43 +42,16 @@ int main()
 		case 6: // Заполнить автоматически
 			fill_with_random_number(&fd);
 			break;
-		case 7: // Отсортировать
+		case 7: // Отсортировать (по возрастанию)
 			bubble_sort(&fd);
 			break;
 
 		// Поиск
 		case 8: // Линейный
-			if (fd.file_ptr) {
-				int value;
-				printf("Введите значение для поиска: ");
-				if (scanf("%d", &value) == 1) {
-					linear_search_fd(&fd, value);
-				} else {
-					printf("Ошибка ввода!\n");
-				}
-			} else {
-				printf("Сначала откройте файл!\n");
-			}
+			linear_search(&fd);
 			break;
 		case 9: // Бинарный
-			if (fd.file_ptr)
-			{
-				printf("Введите значение для поиска: ");
-				int value;
-				if (scanf("%d", &value) == 1)
-				{
-					binary_search_fd(&fd, value);
-				}
-				else
-				{
-					printf("Ошибка: введите корректное число.\n");
-					clear_input_buffer();
-				}
-			}
-			else
-			{
-				printf("Ошибка: файл не открыт.\n");
-			}
+			binary_search(&fd);
 			break;
 
 		// Выход
