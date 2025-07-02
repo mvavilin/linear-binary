@@ -15,9 +15,10 @@ typedef struct
 {
     double time_ms;
     int iterations;
+    int count;
 } SearchStats;
 
 void linear_search(FileData *fd);
-bool linear_search_fd(FileData *fd, int value);
+bool linear_search_fd(FileData *fd, int value, bool search_all);
 
 #endif
